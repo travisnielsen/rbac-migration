@@ -5,6 +5,8 @@
     TBD 
 #>
 
+# BE SURE THE tenantId variable is set on line 65
+
 # Objects and custom roles
 $objectNamesDict = @{}
 $customRoles = New-Object System.Collections.ArrayList
@@ -59,7 +61,9 @@ function Get-RoleAssignments {
     }
 }
 
+# MAKE SURE THIS VALUE IS SET
 $tenantId = ""
+
 Connect-AzAccount -Tenant $tenantId
 $azContexts = get-Azcontext -listavailable
 
@@ -73,7 +77,7 @@ foreach ($context in $azContexts) {
     }
 }
 
-$outputFileName = "report.csv"
+$outputFileName = "rbac-audit-${tenantId}.csv"
 $folderName = "data"
 if (!(test-path $folderName))
 {
