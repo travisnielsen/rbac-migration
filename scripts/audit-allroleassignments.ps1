@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Lists all role assignments for a subscription
+    Lists all role assignments for all subscriptions a user has access to within an identified AAD tenant.
 .DESCRIPTION
     TBD 
 #>
