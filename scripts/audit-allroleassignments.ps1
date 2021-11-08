@@ -65,12 +65,12 @@ function Get-RoleAssignments {
 $tenantId = ""
 
 Connect-AzAccount -Tenant $tenantId
-$azContexts = get-Azcontext -listavailable
+$azContexts = Get-AzSubscription -TenantId $tenantId
 
 foreach ($context in $azContexts) {
-    if ($context.Subscription.TenantId -eq $tenantId) {
-        $id = $context.Subscription.Id
-        $subscriptionName = ($context).Subscription.Name
+    if ($context.TenantId -eq $tenantId) {
+        $id = $context.Id
+        $subscriptionName = $context.Name
         Write-Host "Connecting to: $subscriptionName"
         Set-AzContext -Subscription $id -ErrorAction SilentlyContinue -WarningVariable connectionWarning -ErrorVariable connectionError
         $result = Get-RoleAssignments
